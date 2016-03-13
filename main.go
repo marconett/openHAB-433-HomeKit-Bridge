@@ -18,6 +18,8 @@ func main() {
 	bridgename := flag.String("name", "LBI_Bridge", "HomeKit Bridge Name")
 	bridgepin := flag.String("pin", "32191123", "HomeKit Bridge PIN")
 
+	flag.Parse()
+
 	value, _ := querySitemap(*host, *port, *sitemap)
 	getThermostats(value)
 
@@ -58,7 +60,6 @@ func main() {
 	}
 
 	for i := range thermoNames {
-		fmt.Println(thermoNames[i])
 		x := newHomeKitThermostat(thermoNames[i]).Accessory
 		thermoObjects = append(thermoObjects, x)
 	}

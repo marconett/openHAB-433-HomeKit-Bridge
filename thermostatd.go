@@ -44,7 +44,7 @@ func newHomeKitThermostat(bucketName string) (a *accessory.Thermostat) {
 
 		for {
 			// open bolt db
-			db, err := bolt.Open("my.db", 0600, nil)
+			db, err := bolt.Open("hk.db", 0600, nil)
 			if err != nil {
 				log.Fatal(err)
 			}
