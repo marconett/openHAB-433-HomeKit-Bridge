@@ -37,8 +37,8 @@ func main() {
 	// get all bucket names into array and: for each array element do newHomeKitThermostat giving name as argument
 
 	var thermoNames []string
-	var thermoObjects []*accessory.Accessory
-	// var thermoObjects []*accessory.Thermostat
+	var hkObjects []*accessory.Accessory
+	// var hkObjects []*accessory.Thermostat
 
 	// open bolt db
 	db, err := bolt.Open("hk.db", 0600, nil)
@@ -61,10 +61,13 @@ func main() {
 
 	for i := range thermoNames {
 		x := newHomeKitThermostat(thermoNames[i]).Accessory
-		thermoObjects = append(thermoObjects, x)
+		hkObjects = append(hkObjects, x)
 	}
 
-	t, err := hap.NewIPTransport(hap.Config{Pin: *bridgepin}, newHomeKitBridge(*bridgename), thermoObjects...)
+	schrank := newHomeKitOutlet433("Schrank", "01111", "3").Accessory
+	hkObjects = append(hkObjects, schrank)
+
+	t, err := hap.NewIPTransport(hap.Config{Pin: *bridgepin}, newHomeKitBridge(*bridgename), hkObjects...)
 	if err != nil {
 		log.Fatal(err)
 	}

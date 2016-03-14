@@ -1,2 +1,4 @@
 thermostat
 *.db
+buildRaspberry.sh
+hp-bridge

@@ -1,14 +1,16 @@
 package main
 
-import "encoding/json"
-import "errors"
-import "io/ioutil"
-import "net/http"
-import "github.com/Jeffail/gabs"
-import "github.com/boltdb/bolt"
-import "log"
-import "regexp"
-import "strings"
+import (
+	"encoding/json"
+	"errors"
+	"github.com/Jeffail/gabs"
+	"github.com/boltdb/bolt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"regexp"
+	"strings"
+)
 
 var (
 	defaultTherms = []string{"marco", "henrik", "buero"}
